@@ -40,7 +40,6 @@ public class MoneyUtil {
 	 */
     static List<Coin> filterByCurrency(List<Coin> coins, String currency){
     	List<Coin> filter = new ArrayList<Coin>();
-    	String checkCurrency;
     	for(Coin c : coins){
     		if(!c.getCurrency().equals(currency)){
     			filter.add(c);
