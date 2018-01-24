@@ -36,9 +36,7 @@ public class Purse {
      * @return the number of coins in the purse
      */
     public int count() { 
-    	int count = 0;
-    	for(Coin c : money) count++;
-    	return count; 
+    	return money.size(); 
     }
     
     /** 
@@ -94,8 +92,7 @@ public class Purse {
 	 *    or null if cannot withdraw requested amount.
      */
     public Coin[] withdraw( double amount ) {
-        //TODO don't allow to withdraw amount < 0
-    	
+
 	   /*
 		* See lab sheet for outline of a solution, 
 		* or devise your own solution.
@@ -151,6 +148,7 @@ public class Purse {
      * toString returns a string description of the purse contents.
      * It can return whatever is a useful description.
      */
+    @Override 
     public String toString() {
     	    return String.format("%d coins with value %.1f", this.count(), this.getBalance());
     }

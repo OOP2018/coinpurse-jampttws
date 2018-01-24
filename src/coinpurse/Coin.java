@@ -51,8 +51,8 @@ public class Coin implements Comparable<Coin> {
     /**
      * @param Coin that you want to compare with another coin.
      * @return -1 if first coin has much value than second.
-     * @return 1 if first coin has less value than second.
-     * @return 0 if first coin has the same value as second.
+     *          1 if first coin has less value than second.
+     *          0 if first coin has the same value as second.
      */
     @Override
 	public int compareTo(Coin Coin)	{
