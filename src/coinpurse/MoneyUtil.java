@@ -19,11 +19,10 @@ public class MoneyUtil {
 	    filterByCurrency(coins, "Baht");
 		printCoin(coins);
 		sortCoins(coins);
-		printCoin(coins);
 	}
 	
 	/**
-	 * This method is use to print every coin in the list.
+	 * This method use to print every coin in the list.
 	 * @param coins is the List of Coin object.
 	 */
 	static void printCoin(List<Coin> coins){
@@ -32,6 +31,13 @@ public class MoneyUtil {
 		}
 	}
 	
+	/**
+	 * Make the List that have only coin with the same currency.
+	 * @param coins is the List of Coin object.
+	 * @param currency of the coin that you want to get in a List.
+	 * @return a List of Coins that have the same currency 
+	 *     as the currency(parameter).
+	 */
     static List<Coin> filterByCurrency(List<Coin> coins, String currency){
     	List<Coin> filter = new ArrayList<Coin>();
     	String checkCurrency;
