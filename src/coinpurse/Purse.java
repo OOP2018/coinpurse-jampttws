@@ -33,7 +33,7 @@ public class Purse {
     /**
      * Count and return the number of coins in the purse.
      * This is the number of coins, not their value.
-     * @return the number of coins in the purse
+     * @return the number of coins in the purse.
      */
     public int count() { 
     	return money.size(); 
@@ -52,7 +52,7 @@ public class Purse {
     
     /**
      * Return the capacity of the coin purse.
-     * @return the capacity
+     * @return the capacity.
      */
     public int getCapacity() { 
 		return capacity; 
@@ -92,22 +92,6 @@ public class Purse {
 	 *    or null if cannot withdraw requested amount.
      */
     public Coin[] withdraw( double amount ) {
-
-	   /*
-		* See lab sheet for outline of a solution, 
-		* or devise your own solution.
-		* The idea is to be greedy.
-		* Try to withdraw the largest coins possible.
-		* Each time you choose a coin as a candidate for
-		* withdraw, add it to a temporary list and
-		* decrease the amount (remainder) to withdraw.
-		* 
-		* If you reach a point where amountNeededToWithdraw == 0
-		* then you found a solution!
-		* Now, use the temporary list to remove coins
-		* from the money list, and return the temporary
-		* list (as an array).
-		*/
     	
        	List<Coin> withdraw = new ArrayList<Coin>();
     	
@@ -121,23 +105,11 @@ public class Purse {
 				withdraw.add(money.get(i));
 			} 
 		}
-    	
-    	
-		// Did we get the full amount?
-		// This code assumes you decrease amount each time you remove a coin.
-    	    // Your code might use some other variable for the remaining amount to withdraw.
 		
 		if ( amount != 0 ){	
-			// failed. Don't change the contents of the purse.
 			return null;
 		}
 
-		// Success.
-		// Remove the coins you want to withdraw from purse,
-		// and return them as an array.
-		// Use list.toArray( array[] ) to copy a list into an array.
-		// toArray returns a reference to the array itself.
-		
 		for(Coin c : withdraw) money.remove(c);
 		
 		Coin[] withdrawArray = new Coin[withdraw.size()];
