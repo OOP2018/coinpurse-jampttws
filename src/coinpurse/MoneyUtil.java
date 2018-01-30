@@ -1,60 +1,63 @@
 package coinpurse;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
- *  A class that use to test compareTo mathod of Coin object. 
+ *  A class that use to test compareTo mathod of Coin object with Valuable class. 
  *  @author Tanasorn Tritawisup
  */
 public class MoneyUtil {
 
 	public static void main(String[] args){
-		List<Coin> coins = new ArrayList<Coin>();
-		coins.add(new Coin(10,"Baht"));
-		coins.add(new Coin(5, "Rupie"));
-		coins.add(new Coin(35, "Baht"));
-		coins.add(new Coin(20, "Dollas"));
-		coins.add(new Coin(2, "Baht"));
-	    filterByCurrency(coins, "Baht");
-		printCoin(coins);
-		sortCoins(coins);
+		List<Valuable> value = new ArrayList<Valuable>();
+		value.add(new Coin(10,"Baht"));
+		value.add(new Coin(5, "Rupie"));
+		value.add(new Coin(35, "Baht"));
+		value.add(new Coin(20, "Dollas"));
+		value.add(new Coin(2, "Baht"));
+	    filterByCurrency(value, "Baht");
+		printValue(value);
+		sortValue(value);
 	}
 	
 	/**
-	 * This method use to print every coin in the list.
-	 * @param coins is the List of Coin object.
+	 * This method use to print every value in the list.
+	 * @param value is the List of Valuable of the object.
 	 */
-	static void printCoin(List<Coin> coins){
-		for(int i = 0; i < coins.size(); i++){
-			System.out.println(coins.get(i));
+	static void printValue(List<Valuable> value){
+		for(int i = 0; i < value.size(); i++){
+			System.out.println(value.get(i));
 		}
 	}
 	
 	/**
-	 * Make the List that have only coin with the same currency.
-	 * @param coins is the List of Coin object.
-	 * @param currency of the coin that you want to get in a List.
-	 * @return a List of Coins that have the same currency 
+	 * Make the List that have only value with the same currency.
+	 * @param value is the List of value of the object.
+	 * @param currency of the object that you want to get in a List.
+	 * @return a List of Valuable that have the same currency 
 	 *     as the currency(parameter).
 	 */
-    static List<Coin> filterByCurrency(List<Coin> coins, String currency){
-    	List<Coin> filter = new ArrayList<Coin>();
-    	for(Coin c : coins){
-    		if(!c.getCurrency().equals(currency)){
-    			filter.add(c);
+    static List<Valuable> filterByCurrency(List<Valuable> value, String currency){
+    	List<Valuable> filter = new ArrayList<Valuable>();
+    	for(Valuable v : value){
+    		if(!v.getCurrency().equals(currency)){
+    			filter.add(v);
     		}
     	}
-    	for(Coin c : filter) coins.remove(c);
-	return coins;		
+    	for(Valuable v : filter) value.remove(v);
+	return value;		
 	}
 	
 	/**
 	 * Sort method to test compareTo method.
-	 * @param coins is the List of Coin object.
+	 * @param value is the List of Valuable of the object.
 	 */
-	public static void sortCoins(List<Coin> coins){
-		java.util.Collections.sort(coins);
+	public static void sortValue(List<Valuable> value){
+		Comparator<Valuable> comparator = new ValueComparator();
+		Collections.sort((List<Valuable>) value, comparator);
 	}
 	
 }
