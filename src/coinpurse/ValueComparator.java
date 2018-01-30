@@ -3,7 +3,7 @@ package coinpurse;
 import java.util.Comparator;
 
 /**
- * 
+ * A comparator of a Valuable class.
  * @author Tanasorn Tritawisup
  *
  */
