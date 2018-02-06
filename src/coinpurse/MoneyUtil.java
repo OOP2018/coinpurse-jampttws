@@ -43,12 +43,11 @@ public class MoneyUtil {
     static List<Valuable> filterByCurrency(List<Valuable> value, String currency){
     	List<Valuable> filter = new ArrayList<Valuable>();
     	for(Valuable v : value){
-    		if(!v.getCurrency().equals(currency)){
+    		if(v.getCurrency().equals(currency)){
     			filter.add(v);
     		}
     	}
-    	for(Valuable v : filter) value.remove(v);
-	return value;		
+	return filter;		
 	}
 	
 	/**
