@@ -7,8 +7,8 @@ import java.util.List;
 
 
 /**
- *  A coin purse contains coins.
- *  You can insert coins, withdraw money, check the balance,
+ *  A purse contains coins and banknote.
+ *  You can insert money, withdraw money, check the balance,
  *  and check if the purse is full.
  *  
  *  @author Tanasorn Tritawisup
@@ -25,7 +25,7 @@ public class Purse {
     
     /** 
      *  Create a purse with a specified capacity.
-     *  @param capacity is maximum number of coins you can put in purse.
+     *  @param capacity is maximum number of money you can put in purse.
      */
     public Purse( int capacity ) {
     	this.capacity = capacity;
@@ -53,7 +53,7 @@ public class Purse {
 
     
     /**
-     * Return the capacity of the coin purse.
+     * Return the capacity of the purse.
      * @return the capacity.
      */
     public int getCapacity() { 
@@ -71,10 +71,10 @@ public class Purse {
     }
 
     /** 
-     * Insert a coin into the purse.
-     * The coin is only inserted if the purse has space for it
-     * and the coin has positive value.  No worthless coins!
-     * @param coin is a Coin object to insert into purse
+     * Insert a value into the purse.
+     * The value is only inserted if the purse has space for it
+     * and the value is positive.  No worthless coins!
+     * @param value is a Valuable interface to insert into purse
      * @return true if coin inserted, false if can't insert
      */
     public boolean insert( Valuable value ) {
@@ -87,10 +87,10 @@ public class Purse {
     
     /**  
      *  Withdraw the requested amount of money.
-     *  Return an array of Coins withdrawn from purse,
+     *  Return an array of Valuable withdrawn from purse,
      *  or return null if cannot withdraw the amount requested.
      *  @param amount is the amount to withdraw
-     *  @return array of Coin objects for money withdrawn, 
+     *  @return array of Valuable class for money withdrawn, 
 	 *    or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw( double amount ) {
