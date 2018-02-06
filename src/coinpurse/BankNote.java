@@ -1,5 +1,7 @@
 package coinpurse;
 
+import java.util.Random;
+
 /**
  * Banknote represents banknote (money) with a fixed value ,currency and serial number. 
  * @author Tanasorn Tritawisup
@@ -21,7 +23,7 @@ public class BankNote implements Valuable{
 	public BankNote(double value, String currency){
 		this.value = value;
 		this.currency = currency;
-		this.serialNumber = serialNumber++;
+		this.serialNumber = nextSerialNumber++;
 	}
 	
 	/**
@@ -63,6 +65,6 @@ public class BankNote implements Valuable{
 	
     @Override
 	public String toString(){
-		return String.format("%.0f-&s note [%d]", value, currency, serialNumber);
+		return String.format("%.0f-%s note [%d]", getValue() ,getCurrency() ,getSerial());
 	}
 }

@@ -38,7 +38,48 @@ public class PurseTest {
     private Coin makeCoin(double value) {
 		return new Coin(value,CURRENCY);
 	}
+    
+    /** Make a banknote with the default currency. To save typing "new BankNote(...)" */
+    private BankNote makeNote(double value) {
+    	return new BankNote(value, CURRENCY);
+    }
 
+    /**test for BankNote*/
+    @Test
+    public void testBankNote() {
+    	Purse purse = new Purse(3);
+    	BankNote note1 = makeNote(20);
+    	BankNote note2 = makeNote(100);
+    	BankNote note3 = makeNote(20);
+    	//testEquals
+    	  assertFalse(note1.equals(note2));
+    	  assertFalse(note2.equals(note3));
+    	  assertTrue(note1.equals(note3));
+    	//testInsert
+    	  assertTrue( purse.insert(note1));
+          assertTrue( purse.insert(note3));
+          assertTrue( purse.insert(note2));
+          assertEquals( 3, purse.count());
+          // purse is full so insert should fail
+          assertFalse( purse.insert(makeNote(1)) );
+       //testgetBalance()
+          assertEquals(140, Purse.getBalance(), TOL);
+       //testWithdraw
+        Purse purseW = new Purse(5);
+  		double [] values = {100, 20, 50, 20}; // values of banknote we will insert
+  		
+  		for(double value : values) {
+  			Valuable note = makeNote(value);
+  			assertTrue(purseW.insert(note));
+  			assertEquals(value,  purseW.getBalance(), TOL);
+  			Valuable [] result = purseW.withdraw(value);
+  			assertTrue( result != null );
+  			assertEquals( 1, result.length );
+  			assertSame(  note, result[0] ); // should be same object
+  			assertEquals( 0, purseW.getBalance(), TOL );
+  		}	        
+    }
+    
     /** Easy test that the Purse constructor is working. */
     @Test
     public void testConstructor()

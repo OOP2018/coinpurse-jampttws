@@ -18,5 +18,6 @@ public interface Valuable {
      * @return the currency of this object
      */	
 	public String getCurrency();
+	
 
 }

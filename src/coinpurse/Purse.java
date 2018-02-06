@@ -16,12 +16,14 @@ import java.util.List;
 
 public class Purse {
     /** Collection of objects in the purse. */
-    private List<Valuable> money;
+    private static List<Valuable> money;
 	
     /** Capacity is maximum number of items the purse can hold.
      *  Capacity is set when the purse is created and cannot be changed.
      */
     private final int capacity;
+    
+    private Comparator<Valuable> comparator = new ValueComparator();
     
     /** 
      *  Create a purse with a specified capacity.
@@ -45,7 +47,7 @@ public class Purse {
      *  Get the total value of all items in the purse.
      *  @return the total value of items in the purse.
      */
-    public double getBalance() {
+    public static double getBalance() {
     	double totalValue = 0.0;
     	for(Valuable v : money) totalValue += v.getValue();
     	return totalValue;
@@ -98,8 +100,6 @@ public class Purse {
        	List<Valuable> withdraw = new ArrayList<Valuable>();
     	
     	if(amount <= 0 || amount > getBalance()) return null;
-    	
-    	Comparator<Valuable> comparator = new ValueComparator();
     	    
        	Collections.sort((List<Valuable>) money, comparator);
     	
@@ -126,7 +126,7 @@ public class Purse {
      */
     @Override 
     public String toString() {
-    	    return String.format("%d coins with value %.1f", this.count(), this.getBalance());
+    	    return money.toString();
     }
 
 }

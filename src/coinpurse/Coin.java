@@ -48,20 +48,6 @@ public class Coin implements Valuable {
 		return this.getValue() == other.getValue() && this.getCurrency().equals(other.getCurrency());
 	}
 	
-    /**
-     * @param Coin that you want to compare with another coin.
-     * @return -1 if first coin has much value than second.
-     *          1 if first coin has less value than second.
-     *          0 if first coin has the same value as second.
-     */
-    public int compareTo(Coin Coin)	{
-		if(this.getValue() < Coin.getValue()) {
-			return -1;
-		} else if(this.getValue() > Coin.getValue()) {
-			return 1;
-		} else return 0;
-	}
-	
     @Override
 	public String toString(){
 		return value + "-" + currency;		

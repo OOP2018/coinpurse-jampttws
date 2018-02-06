@@ -15,9 +15,10 @@ public class MoneyUtil {
 		List<Valuable> value = new ArrayList<Valuable>();
 		value.add(new Coin(10,"Baht"));
 		value.add(new Coin(5, "Rupie"));
-		value.add(new Coin(35, "Baht"));
-		value.add(new Coin(20, "Dollas"));
+		value.add(new Coin(15, "Baht"));
 		value.add(new Coin(2, "Baht"));
+		value.add(new BankNote(20, "Euro"));
+		value.add(new BankNote(50, "Baht"));
 	    filterByCurrency(value, "Baht");
 		printValue(value);
 		sortValue(value);

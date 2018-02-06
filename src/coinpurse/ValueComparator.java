@@ -25,8 +25,8 @@ public class ValueComparator implements Comparator<Valuable> {
 					return 1;
 				} else return -1;
 			}
-		}
-		return 0;
+		} 
+		return a.getCurrency().compareTo(b.getCurrency());
 	}
 
 }
