@@ -87,6 +87,47 @@ public class Purse {
         }	
     }
     
+    /**
+     * Withdraw the amount, using only items that have 
+     * the same currency as the parameter(amount). 
+     * amount must not be null and amount.getValue() > 0.
+     * @param amount
+     * @return array of Valuable class for money withdrawn, 
+	 *    or null if cannot withdraw requested amount.
+     */
+    public Valuable[] withdraw(Valuable amount ) {
+    	
+       	List<Valuable> withdraw = new ArrayList<Valuable>();
+    	
+    	double value = amount.getValue();
+    	
+		if(value <= 0 || value > getBalance()) return null;
+    	    
+       	Collections.sort((List<Valuable>) money, comparator);
+
+       	List<Valuable> temp = new ArrayList<Valuable>();
+       	
+       	for(Valuable v : money){
+       		if(v.getCurrency().equals(amount.getCurrency())){
+       			temp.add(v);
+       		}
+       	}
+       	
+		for (int i = temp.size()-1; i >= 0; i--) {
+			if (value >= temp.get(i).getValue()) {
+				value -= temp.get(i).getValue();
+				withdraw.add(temp.get(i));
+			} 
+		}
+		
+		if ( value != 0 ) return null;
+
+		for(Valuable v : withdraw) money.remove(v);
+		
+		Valuable[] withdrawArray = new Valuable[withdraw.size()];
+        return withdraw.toArray(withdrawArray);
+	}
+    
     /**  
      *  Withdraw the requested amount of money.
      *  Return an array of Valuable withdrawn from purse,
@@ -96,30 +137,10 @@ public class Purse {
 	 *    or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw( double amount ) {
-    	
-       	List<Valuable> withdraw = new ArrayList<Valuable>();
-    	
-    	if(amount <= 0 || amount > getBalance()) return null;
-    	    
-       	Collections.sort((List<Valuable>) money, comparator);
-    	
-		for (int i = money.size()-1; i >= 0; i--) {
-			if (amount >= money.get(i).getValue()) {
-				amount -= money.get(i).getValue();
-				withdraw.add(money.get(i));
-			} 
-		}
-		
-		if ( amount != 0 ){	
-			return null;
-		}
-
-		for(Valuable v : withdraw) money.remove(v);
-		
-		Valuable[] withdrawArray = new Valuable[withdraw.size()];
-        return withdraw.toArray(withdrawArray);
+    	Money amountM = new Money(amount, "BTC");
+    	return withdraw(amountM);       
 	}
-  
+
     /** 
      * toString returns a string description of the purse contents.
      * It can return whatever is a useful description.

@@ -8,10 +8,8 @@ import java.util.Random;
  *
  */
 
-public class BankNote implements Valuable{
+public class BankNote extends Money {
 
-	private double value;
-	private String currency;
 	private static long nextSerialNumber = 1000000;
 	private long serialNumber;
 	
@@ -21,25 +19,8 @@ public class BankNote implements Valuable{
 	 * @param currency of the banknote.
 	 */
 	public BankNote(double value, String currency){
-		this.value = value;
-		this.currency = currency;
+		super(value, currency);
 		this.serialNumber = nextSerialNumber++;
-	}
-	
-	/**
-	 * Get the value of the Banknote.
-	 * @return value.
-	 */
-	public double getValue(){
-		return value;
-	}
-	
-	/**
-	 * Get the currency of the Banknote.
-	 * @return currency.
-	 */
-	public String getCurrency(){
-		return currency;
 	}
 	
 	/**
@@ -50,21 +31,8 @@ public class BankNote implements Valuable{
 		return serialNumber;	
 	}
 	
-
-	/**
-	 * @param arg is the Object that you want to compare.
-	 * @return true if two banknote have the same value and currency.
-	 */
-    @Override
-	public boolean equals(Object obj){
-		if (obj == null) return false;
-	    if (obj.getClass() != this.getClass()) return false;
-	    BankNote other = (BankNote)obj;
-		return this.getValue() == other.getValue() && this.getCurrency().equals(other.getCurrency());
-	}
-	
     @Override
 	public String toString(){
-		return String.format("%.0f-%s note [%d]", getValue() ,getCurrency() ,getSerial());
+		return String.format("%.0f-%s note [%d]", this.getValue() ,this.getCurrency() ,getSerial());
 	}
 }

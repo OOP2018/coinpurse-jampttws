@@ -61,7 +61,7 @@ public class PurseTest {
           assertTrue( purse.insert(note2));
           assertEquals( 3, purse.count());
           // purse is full so insert should fail
-          assertFalse( purse.insert(makeNote(1)) );
+          assertFalse( purse.insert(makeNote(50)) );
        //testgetBalance()
           assertEquals(140, Purse.getBalance(), TOL);
        //testWithdraw
@@ -78,6 +78,23 @@ public class PurseTest {
   			assertSame(  note, result[0] ); // should be same object
   			assertEquals( 0, purseW.getBalance(), TOL );
   		}	        
+    }
+    
+    @Test
+    public void testWithdraw() {
+    	Purse purse = new Purse(5);
+  		Money [] money = {new Money(10,"Baht"), new Money(20,"US"), new Money(5,"BTC"), new Money(20,"Baht")}; 
+
+  		for(Money m : money){
+  			purse.insert(m);
+  		}
+  		
+  		purse.withdraw(new Money(30, "Baht"));
+  		assertEquals(25, purse.getBalance(), TOL);
+  		
+  		
+
+    	
     }
     
     /** Easy test that the Purse constructor is working. */
