@@ -80,8 +80,9 @@ public class PurseTest {
   		}	        
     }
     
+    /**Withdraw a money in the purse with the same money currency*/
     @Test
-    public void testWithdraw() {
+    public void testCurrencyWithdraw() {
     	Purse purse = new Purse(5);
   		Money [] money = {new Money(10,"Baht"), new Money(20,"US"), new Money(5,"BTC"), new Money(20,"Baht")}; 
 

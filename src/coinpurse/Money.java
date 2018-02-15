@@ -1,7 +1,8 @@
 package coinpurse;
 
 /**
- * 
+ * Money class represent any coin and banknote
+ * with value and currency.
  * @author Tanasorn Tritawisup
  *
  */
