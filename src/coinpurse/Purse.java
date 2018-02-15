@@ -75,9 +75,9 @@ public class Purse {
     /** 
      * Insert a value into the purse.
      * The value is only inserted if the purse has space for it
-     * and the value is positive.  No worthless coins!
+     * and the value is positive.
      * @param value is a Valuable interface to insert into purse
-     * @return true if coin inserted, false if can't insert
+     * @return true if value inserted, false if can't insert
      */
     public boolean insert( Valuable value ) {
         if(isFull() || value.getValue() <= 0) return false;  
@@ -101,6 +101,7 @@ public class Purse {
     	
     	double value = amount.getValue();
     	
+    	if(amount == null) return null;
 		if(value <= 0 || value > getBalance()) return null;
     	    
        	Collections.sort((List<Valuable>) money, comparator);
