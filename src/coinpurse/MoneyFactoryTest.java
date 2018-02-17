@@ -4,10 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Test the MoneyFactory using JUnit.
+ * @author Tanasorn Tritawisup
+ *
+ */
 public class MoneyFactoryTest {
 	
+	/** tolerance for comparing two double values */
 	private static final double TOL = 1.0E-6;
 	
+	/**test that the MoneyFactory is Singleton*/
 	@Test
 	public void testSingleton() {
 		MoneyFactory mf1 = MoneyFactory.getInstance();
@@ -18,6 +25,7 @@ public class MoneyFactoryTest {
 		assertFalse(mf1 == mf3);		
 	}
 
+	/**test for ThaiMoneyFactory methods*/
 	@Test
 	public void testThaiMoneyFactory(){
 		MoneyFactory.setFactory(new ThaiMoneyFactory());
@@ -32,6 +40,7 @@ public class MoneyFactoryTest {
 		assertTrue((mt3.createMoney(10).getCurrency()).equals("Baht"));
 	}
 	
+	/**test for MalayMoneyFactory methods*/
 	@Test
 	public void testMalayMoneyFactory(){
 		MoneyFactory.setFactory(new MalayMoneyFactory());
