@@ -10,6 +10,8 @@ import java.util.List;
  *  @author Tanasorn Tritawisup
  */
 public class MoneyUtil {
+	
+	private static long serialNumber = 1000000;
 
 	public static void main(String[] args){
 		List<Valuable> value = new ArrayList<Valuable>();
@@ -17,8 +19,8 @@ public class MoneyUtil {
 		value.add(new Coin(5, "Rupie"));
 		value.add(new Coin(15, "Baht"));
 		value.add(new Coin(2, "Baht"));
-		value.add(new BankNote(20, "Euro"));
-		value.add(new BankNote(50, "Baht"));
+		value.add(new BankNote(20, "Euro", serialNumber++));
+		value.add(new BankNote(50, "Baht", serialNumber++));
 	    filterByCurrency(value, "Baht");
 		printValue(value);
 		sortValue(value);

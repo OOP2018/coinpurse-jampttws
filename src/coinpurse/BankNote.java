@@ -10,17 +10,16 @@ import java.util.Random;
 
 public class BankNote extends Money {
 
-	private static long nextSerialNumber = 1000000;
-	private long serialNumber;
+	private long serialNumber = 1000000;
 	
 	/**
 	 * Initialize a new BankNote.
 	 * @param value of the banknote.
 	 * @param currency of the banknote.
 	 */
-	public BankNote(double value, String currency){
+	public BankNote(double value, String currency, long serialNumber){
 		super(value, currency);
-		this.serialNumber = nextSerialNumber++;
+		this.serialNumber = serialNumber;
 	}
 	
 	/**

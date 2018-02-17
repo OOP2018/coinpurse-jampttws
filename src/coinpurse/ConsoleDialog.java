@@ -18,6 +18,8 @@ public class ConsoleDialog {
     // Shorter prompt shown subsequently
     final String SHORT_PROMPT = "\nEnter d, w, ?, or q: ";
     
+    private static long serialNumber = 1000000;
+    
 	// The dialog receives a Purse object by dependency injection (as parameter to constructor)
     // so don't create a Purse here.
     private Purse purse;
@@ -123,10 +125,18 @@ public class ConsoleDialog {
         scanline.close();
     }
     
-    /** Make a Coin (or BankNote or whatever) using requested value. */
+    /** Make a Money (Coin or BankNote or whatever) using requested value. */
     private Valuable makeMoney(double value) {
-    	    if(value >= 20) return new BankNote(value, CURRENCY);
-        else return new Coin(value, CURRENCY);
+    	MoneyFactory mf = MoneyFactory.getInstance();
+    	Valuable valuable = null;
+    	try {
+    	    valuable = mf.createMoney(value);
+    	} catch (IllegalArgumentException ex) {
+    	    System.out.println("Sorry, "+ value +" is not a valid amount.");
+    	}
+    	return valuable;
+
+   
     }
 
 }

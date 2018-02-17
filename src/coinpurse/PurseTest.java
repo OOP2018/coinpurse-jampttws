@@ -24,6 +24,7 @@ public class PurseTest {
 	/** tolerance for comparing two double values */
 	private static final double TOL = 1.0E-6;
 	private static final String CURRENCY = "BTC";
+	private static long serialNumber = 1000000;
 	
     /**
      * Sets up the test fixture.
@@ -41,7 +42,7 @@ public class PurseTest {
     
     /** Make a banknote with the default currency. To save typing "new BankNote(...)" */
     private BankNote makeNote(double value) {
-    	return new BankNote(value, CURRENCY);
+    	return new BankNote(value, CURRENCY, serialNumber++);
     }
 
     /**test for BankNote*/
