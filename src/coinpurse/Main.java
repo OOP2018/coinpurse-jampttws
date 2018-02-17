@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
  */
 public class Main {
 	
-	
 	public static MoneyFactory init(){
 		ResourceBundle bundle = ResourceBundle.getBundle( "purse" );
 		String factoryclass = bundle.getString( "moneyfactory" );
