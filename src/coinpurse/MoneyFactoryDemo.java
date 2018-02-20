@@ -13,8 +13,6 @@ public class MoneyFactoryDemo {
 		System.out.println(tm.createMoney(1));
 		System.out.println(tm.createMoney(20));
 		System.out.println(tm.createMoney(50));
-		MoneyFactory tm2 = new ThaiMoneyFactory();
-		if(tm == tm2); System.out.println("singleton");
 		
 		//test create Malaysia's money
 		MoneyFactory mm = new MalayMoneyFactory();
@@ -28,6 +26,12 @@ public class MoneyFactoryDemo {
 		MoneyFactory.setFactory(new MalayMoneyFactory());
 		MoneyFactory mf2 = MoneyFactory.getInstance();
 		System.out.println(mf2.createMoney(0.10));
+		MoneyFactory mf3 = MoneyFactory.getInstance();
+		if(mf2 == mf3) {
+			System.out.println("singleton");
+		}else {
+			System.out.println("not singleton");
+		}
 		
 	}
 
