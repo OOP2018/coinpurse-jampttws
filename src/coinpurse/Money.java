@@ -17,7 +17,7 @@ public class Money implements Valuable{
 	 * @param currency
 	 */
 	public Money(double value, String currency){
-//		if(value >= 0) 
+//	if(value >= 0) 
 		this.value = value;
 		this.currency = currency;
 	}
