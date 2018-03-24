@@ -1,4 +1,4 @@
-package coinpurse;
+package coinpurse.test;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
@@ -7,6 +7,12 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import coinpurse.BankNote;
+import coinpurse.Coin;
+import coinpurse.Money;
+import coinpurse.Purse;
+import coinpurse.Valuable;
 
 /**
  * Test the Purse using JUnit.
@@ -207,6 +213,7 @@ public class PurseTest {
 		assertEquals(amount1+amount2, purse.getBalance(), TOL );
 		
 		Valuable [] wd1 = purse.withdraw(amount1);
+		System.out.print(wd1.length);
 		assertEquals(amount1, sum(wd1), TOL );
 		
 		assertEquals(amount2, purse.getBalance(), TOL );

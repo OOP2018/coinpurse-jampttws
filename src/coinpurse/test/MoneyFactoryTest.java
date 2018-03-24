@@ -1,8 +1,12 @@
-package coinpurse;
+package coinpurse.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import coinpurse.MalayMoneyFactory;
+import coinpurse.MoneyFactory;
+import coinpurse.ThaiMoneyFactory;
 
 /**
  * Test the MoneyFactory using JUnit.

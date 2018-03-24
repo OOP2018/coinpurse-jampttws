@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.RecursiveWithdraw;
+import coinpurse.strategy.WithdrawStrategy;
+
 
 /**
  *  A purse contains coins and banknote.
@@ -25,6 +29,9 @@ public class Purse {
     
     private Comparator<Valuable> comparator = new ValueComparator();
     
+    /**Type of WithdrawStrategy*/
+    private WithdrawStrategy strategy;
+    
     /** 
      *  Create a purse with a specified capacity.
      *  @param capacity is maximum number of money you can put in purse.
@@ -32,6 +39,7 @@ public class Purse {
     public Purse( int capacity ) {
     	this.capacity = capacity;
     	money = new ArrayList<Valuable>(capacity);
+    	strategy = new GreedyWithdraw();
     }
 
     /**
@@ -97,36 +105,17 @@ public class Purse {
      */
     public Valuable[] withdraw(Valuable amount ) {
     	
-       	List<Valuable> withdraw = new ArrayList<Valuable>();
-    	
-    	double value = amount.getValue();
-    	
-    	if(amount == null) return null;
-		if(value <= 0 || value > getBalance()) return null;
-    	    
-       	Collections.sort((List<Valuable>) money, comparator);
+    	setWithdrawStrategy(new RecursiveWithdraw());
 
-       	List<Valuable> temp = new ArrayList<Valuable>();
+       	List<Valuable> withdraw = strategy.withdraw(amount, money);
+  	
+       	if (withdraw == null) return null;
        	
-       	for(Valuable v : money){
-       		if(v.getCurrency().equals(amount.getCurrency())){
-       			temp.add(v);
-       		}
-       	}
-       	
-		for (int i = temp.size()-1; i >= 0; i--) {
-			if (value >= temp.get(i).getValue()) {
-				value -= temp.get(i).getValue();
-				withdraw.add(temp.get(i));
-			} 
-		}
-		
-		if ( value != 0 ) return null;
-
 		for(Valuable v : withdraw) money.remove(v);
 		
 		Valuable[] withdrawArray = new Valuable[withdraw.size()];
         return withdraw.toArray(withdrawArray);
+        
 	}
     
     /**  
@@ -138,7 +127,7 @@ public class Purse {
 	 *    or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw( double amount ) {
-    	Money amountM = new Money(amount, "BTC");
+    	Money amountM = new Money(amount, "Baht");
     	return withdraw(amountM);       
 	}
 
@@ -150,5 +139,13 @@ public class Purse {
     public String toString() {
     	    return money.toString();
     }
+	
+    /**
+     * Set the withdraw strategy.
+     * @param strategy is a withdraw strategy that you want to set.
+     */
+	public void setWithdrawStrategy(WithdrawStrategy strategy){
+		this.strategy = strategy;
+	}
 
 }
