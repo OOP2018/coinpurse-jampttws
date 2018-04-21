@@ -3,6 +3,11 @@ package coinpurse.strategy;
 import java.util.List;
 import coinpurse.Valuable;
 
+/**
+ * Interface for withdraw strategy.
+ * @author Tanasorn Tritawisup
+ *
+ */
 public interface WithdrawStrategy {
 	
 	/**
